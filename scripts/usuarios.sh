@@ -6,7 +6,7 @@ if [ "$EUID" -ne 0 ]; then
 fi
 
 echo "Eres superusuario. Continuando con el script..."
-echo ""
+echo 
 read -p "Introduce el nombre del departamento: " departamento
 
 if getent group "$departamento" >/dev/null; then
@@ -19,13 +19,13 @@ fi
 read -p "¿Cuántos usuarios deseas crear para el departamento? " num_usuarios
 
 for ((i=1; i<=num_usuarios; i++)); do
-    read -p "Introduce el nombre del usuario $i: " usuario
+    usuario="$departamento$i"
     
     if id "$usuario" &>/dev/null; then
         echo "El usuario '$usuario' ya existe."
     else
-        sudo useradd -m -G "$departamento" "$usuario"
-        echo "Usuario '$usuario' creado y añadido al grupo '$departamento'."
+        sudo useradd -m -G $departamento $usuario
+        echo "Usuario creado y añadido al grupo '$departamento'."
     fi
     #&>/dev/null: Redirige tanto la salida estándar (stdout) como la salida de error (stderr).
     #Esto asegura que cualquier mensaje (ya sea informativo o de error) no se muestre en pantalla.
