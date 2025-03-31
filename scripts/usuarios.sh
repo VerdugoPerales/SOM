@@ -32,16 +32,26 @@ for ((i=1; i<=num_usuarios; i++)); do
 
     read -p "¿Quieres asignar una contraseña a '$usuario'? (s/n, por defecto sí): " respuesta
     case "$respuesta" in
-    "" | "s" | "S")
-        echo "$usuario:1234" | sudo chpasswd
-        echo "Se asignó la contraseña '1234' al usuario '$usuario'."
-        ;;
-    "n" | "N")
-        echo "No se asignó contraseña al usuario '$usuario'."
-        ;;
-    *)
-        echo "Respuesta no válida, no se asignó contraseña al usuario '$usuario'."
-        ;;
+        "")
+            echo "$usuario:1234" | sudo chpasswd
+            echo "Contraseña asignada correctamente al usuario '$usuario'."
+            ;;
+        "s" | "S")
+            read -s -p "Introduce la contraseña para '$usuario': " contrasena
+            echo
+            if [ -z "$contrasena" ]; then
+            contrasena="1234"
+            echo "No se introdujo contraseña, se asignará la predeterminada '1234'."
+            fi
+            echo "$usuario:$contrasena" | sudo chpasswd
+            echo "Contraseña asignada correctamente al usuario '$usuario'."
+            ;;
+        "n" | "N")
+            echo "No se asignó contraseña al usuario '$usuario'."
+            ;;
+        *)
+            echo "Respuesta no válida, no se asignó contraseña al usuario '$usuario'."
+            ;;
     esac
 done
 
