@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Trabajos</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('Images\Background.jpg'); /* Cambia esto por el nombre de tu archivo */
+            background-size: cover; /* Hace que el fondo cubra toda la pantalla */
+            background-repeat: no-repeat; /* Evita que la imagen se repita */
+            background-position: center; /* Centra la imagen de fondo */
+            color: #444;
+        }
+        .titulo {
+            color: rgb(255, 134, 60);
+            text-align: center;
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        .container {
+            width: 30%;
+            margin: auto; /* Centra el contenedor horizontalmente */
+            background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco translúcido */
+            border-radius: 10px;
+            padding: 20px;
+        }
+        .trabajo {
+            margin-bottom: 20px;
+            border: 4px solid rgb(255, 134, 60);
+            padding: 15px;
+            border-radius: 10px;
+            background-color: rgb(240, 192, 153);
+            box-shadow: 0px 4px 6px rgb(236, 232, 232);
+        }
+        .menu select {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid rgb(255, 134, 60);
+            background-color: rgb(255, 134, 60);
+            border-radius: 5px;
+            color: #444;
+            cursor: pointer;
+        }
+        .menu select:hover {
+            background-color: #f59e42;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <img src="Images\Background.jpg" alt="Fondo" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; object-fit: cover;">
+    <h1 class="titulo">Trabajos de Presentación</h1>
+    
+    <div class="container">
+        <div class="trabajo">
+            <h2>Persona 1</h2>
+            <p>Descripción del trabajo de la primera persona.</p>
+            <div class="menu">
+                <label for="menu1">Opciones:</label>
+                <select id="menu1" onchange="navigate(this.value)">
+                    <option value="" disabled selected>Selecciona...</option>
+                    <option value="trabajo1.html">Ver presentación</option>
+                    <option value="biografia1.html">Ver biografía</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="trabajo">
+            <h2>Persona 2</h2>
+            <p>Descripción del trabajo de la segunda persona.</p>
+            <div class="menu">
+                <label for="menu2">Opciones:</label>
+                <select id="menu2" onchange="navigate(this.value)">
+                    <option value="" disabled selected>Selecciona...</option>
+                    <option value="trabajo2.html">Ver presentación</option>
+                    <option value="biografia2.html">Ver biografía</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function navigate(url) {
+            if (url) {
+                window.location.href = url; // Navega a la URL seleccionada
+            }
+        }
+    </script>
+</body>
+</html>
